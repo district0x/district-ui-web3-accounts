@@ -8,5 +8,13 @@
   queries/accounts)
 
 (reg-sub
+  ::has-accounts?
+  queries/has-accounts?)
+
+(reg-sub
   ::active-account
   queries/active-account)
+
+(reg-sub
+  ::has-active-account?
+  queries/has-active-account?)

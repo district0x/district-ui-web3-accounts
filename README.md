@@ -37,8 +37,14 @@ re-frame subscriptions provided by this module:
 #### `::accounts`
 Returns accounts.
 
+#### `::has-accounts?`
+Returns true if user has accounts.
+
 #### `::active-account`
-Returns active account. 
+Returns active account.
+
+#### `::has-active-account?`
+Returns true if user has active account.
 
 ```clojure
 (ns my-district.home-page
@@ -116,8 +122,14 @@ Returns accounts
       {:dispatch [::do-other-thing]})))
 ```
 
+#### `has-accounts? [db]`
+Returns true if user has accounts.
+
 #### `active-account [db]`
 Returns active account
+
+#### `has-active-account? [db]`
+Returns true if user has active account.
 
 #### `assoc-accounts [db accounts]`
 Associates accounts and returns new re-frame db.
