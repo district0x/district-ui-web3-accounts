@@ -1,4 +1,4 @@
-(defproject district0x/district-ui-web3-accounts "1.0.0"
+(defproject district0x/district-ui-web3-accounts "1.0.1"
   :description "district UI module for handling web3 accounts"
   :url "https://github.com/district0x/district-ui-web3-accounts"
   :license {:name "Eclipse Public License"
@@ -10,7 +10,7 @@
                  [district0x/district-ui-window-focus "1.0.0"]
                  [district0x/re-frame-interval-fx "1.0.2"]
                  [district0x/re-frame-spec-interceptors "1.0.1"]
-                 [madvas.re-frame/web3-fx "0.2.3"]
+                 [district0x.re-frame/web3-fx "1.0.0"]
                  [mount "0.1.11"]
                  [org.clojure/clojurescript "1.9.946"]
                  [re-frame "0.10.2"]]

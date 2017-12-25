@@ -1,6 +1,5 @@
 (ns tests.all
   (:require
-    [cljs-web3.core :as web3]
     [cljs.spec.alpha :as s]
     [cljs.test :refer [deftest is testing run-tests async use-fixtures]]
     [day8.re-frame.test :refer [run-test-async wait-for run-test-sync]]
@@ -14,7 +13,7 @@
 
 (defn set-response [accounts]
   (reg-fx
-    :web3-fx.blockchain/fns
+    :web3/call
     (fn [{:keys [:fns]}]
       (dispatch (vec (concat (:on-success (first fns))
                              [accounts]))))))

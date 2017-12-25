@@ -10,7 +10,7 @@
     [district.ui.window-focus.queries :as window-focus-queries]
     [district0x.re-frame.interval-fx]
     [district0x.re-frame.spec-interceptors :refer [validate-first-arg]]
-    [madvas.re-frame.web3-fx]
+    [district0x.re-frame.web3-fx]
     [re-frame.core :refer [reg-event-fx trim-v]]))
 
 (def interceptors [trim-v])
@@ -58,11 +58,10 @@
       (if (and load-injected-accounts-only?
                (not (web3-queries/web3-injected? db)))
         {:dispatch [::set-accounts []]}
-        {:web3-fx.blockchain/fns
-         {:web3 web3
-          :fns [{:f web3-eth/accounts
-                 :on-success [::set-accounts]
-                 :on-error [::accounts-load-failed]}]}}))))
+        {:web3/call {:web3 web3
+                     :fns [{:fn web3-eth/accounts
+                            :on-success [::set-accounts]
+                            :on-error [::accounts-load-failed]}]}}))))
 
 
 (reg-event-fx

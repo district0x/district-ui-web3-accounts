@@ -5,7 +5,7 @@
 Clojurescript [mount](https://github.com/tolitius/mount) + [re-frame](https://github.com/Day8/re-frame) module for a district UI, that takes care of handling an user's [web3](https://github.com/ethereum/web3.js/) accounts.
 
 ## Installation
-Add `[district0x/district-ui-web3-accounts "1.0.0"]` into your project.clj  
+Add `[district0x/district-ui-web3-accounts "1.0.1"]` into your project.clj  
 Include `[district.ui.web3-accounts]` in your CLJS file, where you use `mount/start`
 
 **Warning:** district0x modules are still in early stages, therefore API can change in a future.
