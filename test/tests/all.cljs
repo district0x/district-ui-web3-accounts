@@ -1,6 +1,5 @@
 (ns tests.all
   (:require
-    [cljs.spec.alpha :as s]
     [cljs.test :refer [deftest is testing run-tests async use-fixtures]]
     [day8.re-frame.test :refer [run-test-async wait-for run-test-sync]]
     [district.ui.web3-accounts.events :as events]
@@ -8,8 +7,6 @@
     [district.ui.web3-accounts]
     [mount.core :as mount]
     [re-frame.core :refer [reg-event-fx dispatch-sync subscribe reg-cofx reg-fx dispatch]]))
-
-(s/check-asserts true)
 
 (defn set-response [accounts]
   (reg-fx

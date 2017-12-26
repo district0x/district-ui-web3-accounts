@@ -28,7 +28,7 @@
       {:db (queries/assoc-accounts db [])}
       (when-not disable-loading-at-start?
         {:forward-events {:register ::load-accounts
-                          :events #{::web3-events/web3-loaded}
+                          :events #{::web3-events/web3-created}
                           :dispatch-to [::load-accounts opts]}})
       (when (and (not disable-polling?)
                  (not disable-loading-at-start?))
