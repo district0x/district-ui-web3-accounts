@@ -1,4 +1,4 @@
-(defproject district0x/district-ui-web3-accounts "1.0.2"
+(defproject district0x/district-ui-web3-accounts "1.0.3"
   :description "district UI module for handling web3 accounts"
   :url "https://github.com/district0x/district-ui-web3-accounts"
   :license {:name "Eclipse Public License"

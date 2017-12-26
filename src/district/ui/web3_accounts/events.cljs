@@ -81,7 +81,7 @@
       (merge
         (when (not= accounts (queries/accounts db))
           {:db (queries/assoc-accounts db accounts)
-           :dispatch [::accounts-changed accounts]})
+           :dispatch [::accounts-changed {:new accounts :old (queries/accounts db)}]})
         {:dispatch-n [[::set-active-account active-account]]}))))
 
 
@@ -96,7 +96,7 @@
   (fn [{:keys [:db]} [active-account]]
     (when (not= active-account (queries/active-account db))
       {:db (queries/assoc-active-account db active-account)
-       :dispatch [::active-account-changed active-account]})))
+       :dispatch [::active-account-changed {:new active-account :old (queries/active-account db)}]})))
 
 
 (reg-event-fx

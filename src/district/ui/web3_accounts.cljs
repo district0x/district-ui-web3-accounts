@@ -17,8 +17,8 @@
 (s/def ::disable-polling? boolean?)
 (s/def ::polling-interval-ms number?)
 (s/def ::load-injected-accounts-only? boolean?)
-(s/def ::opts (s/keys :opt-un [::disable-polling? ::polling-interval-ms ::load-injected-accounts-only?
-                               ::disable-loading-at-start?]))
+(s/def ::opts (s/nilable (s/keys :opt-un [::disable-polling? ::polling-interval-ms ::load-injected-accounts-only?
+                                          ::disable-loading-at-start?])))
 
 
 (defn start [opts]
