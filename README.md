@@ -8,7 +8,31 @@ Clojurescript [mount](https://github.com/tolitius/mount) + [re-frame](https://gi
 Add `[district0x/district-ui-web3-accounts "1.0.3"]` into your project.clj  
 Include `[district.ui.web3-accounts]` in your CLJS file, where you use `mount/start`
 
+## API Overview
+
 **Warning:** district0x modules are still in early stages, therefore API can change in a future.
+
+- [district.ui.web3-accounts](#districtuiweb3-accounts)
+- [district.ui.web3-accounts.subs](#districtuiweb3-accountssubs)
+  - [::accounts](#accounts-sub)
+  - [::has-accounts?](#has-accounts?-sub)
+  - [::active-account](#active-account-sub)
+  - [::has-active-account?](#has-active-account?-sub)
+- [district.ui.web3-accounts.events](#districtuiweb3-accountsevents)
+  - [::load-accounts](#load-accounts)
+  - [::set-accounts](#set-accounts)
+  - [::poll-accounts](#poll-accounts)
+  - [::load-accounts](#load-accounts)
+  - [::accounts-changed](#accounts-changed)
+  - [::set-active-account](#set-active-account)
+  - [::active-account-changed](#active-account-changed)
+- [district.ui.web3-accounts.queries](#districtuiweb3-accountsqueries)
+  - [accounts](#accounts)
+  - [has-accounts?](#has-accounts?)
+  - [active-account](#active-account)
+  - [has-active-account?](#has-active-account?)
+  - [assoc-accounts](#assoc-accounts)
+  - [assoc-active-account](#assoc-active-account)
 
 ## district.ui.web3-accounts
 This namespace contains web3-accounts [mount](https://github.com/tolitius/mount) module. Once you start mount it'll take care 
@@ -34,16 +58,16 @@ You can pass following args to initiate this module:
 ## district.ui.web3-accounts.subs
 re-frame subscriptions provided by this module:
 
-#### `::accounts`
+#### <a name="accounts-sub">`::accounts`
 Returns accounts.
 
-#### `::has-accounts?`
+#### <a name="has-accounts?-sub">`::has-accounts?`
 Returns true if user has accounts.
 
-#### `::active-account`
+#### <a name="active-account-sub">`::active-account`
 Returns active account.
 
-#### `::has-active-account?`
+#### <a name="has-active-account?-sub">`::has-active-account?`
 Returns true if user has active account.
 
 ```clojure
@@ -62,19 +86,16 @@ Returns true if user has active account.
 ## district.ui.web3-accounts.events
 re-frame events provided by this module:
 
-#### `::start [opts]`
-Event fired at mount start.
-
-#### `::load-accounts [opts]`
+#### <a name="load-accounts">`::load-accounts [opts]`
 Loads web3 accounts
 
-#### `::set-accounts [accounts]`
+#### <a name="set-accounts">`::set-accounts [accounts]`
 Sets accounts into db
 
-#### `::poll-accounts [opts]`
+#### <a name="poll-accounts">`::poll-accounts [opts]`
 Event fired when polling for account changes in an interval. 
 
-#### `::accounts-changed`
+#### <a name="accounts-changed">`::accounts-changed`
 Fired when accounts have been changed. Use this event to hook into event flow from your modules.
 One example using [re-frame-forward-events-fx](https://github.com/Day8/re-frame-forward-events-fx) may look like this:
 
@@ -92,21 +113,18 @@ One example using [re-frame-forward-events-fx](https://github.com/Day8/re-frame-
      :dispatch-to [::do-something]}))
 ```
 
-#### `::set-active-account [active-account]`
+#### <a name="set-active-account">`::set-active-account [active-account]`
 Sets active-account into db
 
-#### `::active-account-changed`
+#### <a name="active-account-changed">`::active-account-changed`
 Fired when active account has changed. Use this event to hook into event flow from your modules.
-
-#### `::stop`
-Cleanup event fired on mount stop.
 
 ## district.ui.web3-accounts.queries
 DB queries provided by this module:  
 *You should use them in your events, instead of trying to get this module's 
 data directly with `get-in` into re-frame db.*
 
-#### `accounts [db]`
+#### <a name="accounts">`accounts [db]`
 Returns accounts
 
 ```clojure
@@ -122,23 +140,20 @@ Returns accounts
       {:dispatch [::do-other-thing]})))
 ```
 
-#### `has-accounts? [db]`
+#### <a name="has-accounts?">`has-accounts? [db]`
 Returns true if user has accounts.
 
-#### `active-account [db]`
+#### <a name="active-account">`active-account [db]`
 Returns active account
 
-#### `has-active-account? [db]`
+#### <a name="has-active-account?">`has-active-account? [db]`
 Returns true if user has active account.
 
-#### `assoc-accounts [db accounts]`
+#### <a name="assoc-accounts">`assoc-accounts [db accounts]`
 Associates accounts and returns new re-frame db.
 
-#### `assoc-active-account [db active-account]`
+#### <a name="assoc-active-account">`assoc-active-account [db active-account]`
 Associates active account and returns new re-frame db.
-
-#### `dissoc-web3-accounts [db]`
-Cleans up this module from re-frame db. 
 
 ## Dependency on other district UI modules
 * [district-ui-web3](https://github.com/district0x/district-ui-web3)
