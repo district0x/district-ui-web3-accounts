@@ -5,7 +5,7 @@
 Clojurescript [re-mount](https://github.com/district0x/d0x-INFRA/blob/master/re-mount.md) module, that takes care of handling an user's [web3](https://github.com/ethereum/web3.js/) accounts.
 
 ## Installation
-Add `[district0x/district-ui-web3-accounts "1.0.3"]` into your project.clj  
+Add `[district0x/district-ui-web3-accounts "1.0.4"]` into your project.clj  
 Include `[district.ui.web3-accounts]` in your CLJS file, where you use `mount/start`
 
 ## API Overview
