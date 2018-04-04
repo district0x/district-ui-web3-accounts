@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/district0x/district-ui-web3-accounts.svg?branch=master)](https://travis-ci.org/district0x/district-ui-web3-accounts)
 
-Clojurescript [mount](https://github.com/tolitius/mount) + [re-frame](https://github.com/Day8/re-frame) module for a district UI, that takes care of handling an user's [web3](https://github.com/ethereum/web3.js/) accounts.
+Clojurescript [re-mount](https://github.com/district0x/d0x-INFRA/blob/master/re-mount.md) module, that takes care of handling an user's [web3](https://github.com/ethereum/web3.js/) accounts.
 
 ## Installation
 Add `[district0x/district-ui-web3-accounts "1.0.3"]` into your project.clj  
