@@ -4,6 +4,7 @@
     [cljs-web3.eth :as web3-eth]
     [cljs.spec.alpha :as s]
     [day8.re-frame.forward-events-fx]
+    [district.ui.web3-accounts.effects :as effects]
     [district.ui.web3-accounts.queries :as queries]
     [district.ui.web3.events :as web3-events]
     [district.ui.web3.queries :as web3-queries]
@@ -32,9 +33,11 @@
                           :dispatch-to [::load-accounts opts]}})
       (when (and (not disable-polling?)
                  (not disable-loading-at-start?))
-        {:dispatch-interval {:dispatch [::poll-accounts opts]
-                             :id ::poll-accounts
-                             :ms polling-interval-ms}}))))
+        (if (some-> js/window (aget "ethereum") (aget "on"))
+          {::effects/watch-accounts {:on-change [::set-accounts]}}
+          {:dispatch-interval {:dispatch [::poll-accounts opts]
+                               :id ::poll-accounts
+                               :ms polling-interval-ms}})))))
 
 
 (reg-event-fx

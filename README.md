@@ -5,7 +5,7 @@
 Clojurescript [re-mount](https://github.com/district0x/d0x-INFRA/blob/master/re-mount.md) module, that takes care of handling an user's [web3](https://github.com/ethereum/web3.js/) accounts.
 
 ## Installation
-Add `[district0x/district-ui-web3-accounts "1.0.5"]` into your project.clj  
+Add `[district0x/district-ui-web3-accounts "1.0.6"]` into your project.clj  
 Include `[district.ui.web3-accounts]` in your CLJS file, where you use `mount/start`
 
 ## API Overview
@@ -37,6 +37,10 @@ Include `[district.ui.web3-accounts]` in your CLJS file, where you use `mount/st
 ## district.ui.web3-accounts
 This namespace contains web3-accounts [mount](https://github.com/tolitius/mount) module. Once you start mount it'll take care 
 of loading web3 accounts.
+
+Note, since version `1.0.6` polling for address changes is only fallback option, since MetaMask now provides callback 
+registration for [accounts changed event](https://metamask.github.io/metamask-docs/API_Reference/Ethereum_Provider#ethereum.on(eventname%2C-callback)),
+which is automatically used if available.
 
 You can pass following args to initiate this module: 
 * `:disable-loading-at-start?` Pass true if you don't want load accounts at start
@@ -93,7 +97,8 @@ Loads web3 accounts
 Sets accounts into db
 
 #### <a name="poll-accounts">`::poll-accounts [opts]`
-Event fired when polling for account changes in an interval. 
+Event fired when polling for account changes in an interval. Note, polling is now used only as fallback
+option, since MetaMask now provides callback registration for [accounts changed event](https://metamask.github.io/metamask-docs/API_Reference/Ethereum_Provider#ethereum.on(eventname%2C-callback)). 
 
 #### <a name="accounts-changed">`::accounts-changed`
 Fired when accounts have been changed. Use this event to hook into event flow from your modules.
