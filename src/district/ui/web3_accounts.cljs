@@ -5,10 +5,11 @@
     [district.ui.web3]
     [district.ui.window-focus]
     [mount.core :as mount :refer [defstate]]
-    [re-frame.core :refer [dispatch-sync]]))
+    [re-frame.core :as re-frame]))
 
 (declare start)
 (declare stop)
+
 (defstate web3-accounts
   :start (start (:web3-accounts (mount/args)))
   :stop (stop))
@@ -20,12 +21,11 @@
 (s/def ::opts (s/nilable (s/keys :opt-un [::disable-polling? ::polling-interval-ms ::load-injected-accounts-only?
                                           ::disable-loading-at-start?])))
 
-
 (defn start [opts]
   (s/assert ::opts opts)
-  (dispatch-sync [::events/start opts])
+  ((events/reg-opts-cofx opts))
+  (re-frame/dispatch-sync [::events/start opts])
   opts)
 
-
 (defn stop []
-  (dispatch-sync [::events/stop @web3-accounts]))
+  (re-frame/dispatch-sync [::events/stop @web3-accounts]))
