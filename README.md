@@ -1,11 +1,13 @@
 # district-ui-web3-accounts
 
-[![Build Status](https://travis-ci.org/district0x/district-ui-web3-accounts.svg?branch=master)](https://travis-ci.org/district0x/district-ui-web3-accounts)
+[![CircleCI](https://circleci.com/gh/district0x/district-ui-web3-accounts.svg?style=svg)](https://circleci.com/gh/district0x/district-ui-web3-accounts)
 
 Clojurescript [re-mount](https://github.com/district0x/d0x-INFRA/blob/master/re-mount.md) module, that takes care of handling an user's [web3](https://github.com/ethereum/web3.js/) accounts.
 
 ## Installation
-Add `[district0x/district-ui-web3-accounts "1.0.6"]` into your project.clj  
+Add
+[![Clojars Project](https://img.shields.io/clojars/v/district0x/district-ui-web3-accounts.svg)](https://clojars.org/district0x/district-ui-web3-accounts)
+into your project.clj
 Include `[district.ui.web3-accounts]` in your CLJS file, where you use `mount/start`
 
 ## API Overview
@@ -35,18 +37,19 @@ Include `[district.ui.web3-accounts]` in your CLJS file, where you use `mount/st
   - [assoc-active-account](#assoc-active-account)
 
 ## district.ui.web3-accounts
-This namespace contains web3-accounts [mount](https://github.com/tolitius/mount) module. Once you start mount it'll take care 
+This namespace contains web3-accounts [mount](https://github.com/tolitius/mount) module. Once you start mount it'll take care
 of loading web3 accounts.
 
-Note, since version `1.0.6` polling for address changes is only fallback option, since MetaMask now provides callback 
+Note, since version `1.0.6` polling for address changes is only fallback option, since MetaMask now provides callback
 registration for [accounts changed event](https://metamask.github.io/metamask-docs/API_Reference/Ethereum_Provider#ethereum.on(eventname%2C-callback)),
 which is automatically used if available.
 
-You can pass following args to initiate this module: 
+You can pass following args to initiate this module:
 * `:disable-loading-at-start?` Pass true if you don't want load accounts at start
 * `:disable-polling?` Pass true if you want to disable polling for account changes (needed for [MetaMask](https://metamask.io/) account switching)
 * `:polling-interval-ms` How often should poll for new accounts. Default: 4000
 * `:load-injected-accounts-only?` Pass true if you want to load accounts only when web3 is injected into a browser
+* `:eip55?` Pass true if you want to turn on support for the [EIP-55](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-55.md).
 
 ```clojure
   (ns my-district.core
@@ -98,7 +101,7 @@ Sets accounts into db
 
 #### <a name="poll-accounts">`::poll-accounts [opts]`
 Event fired when polling for account changes in an interval. Note, polling is now used only as fallback
-option, since MetaMask now provides callback registration for [accounts changed event](https://metamask.github.io/metamask-docs/API_Reference/Ethereum_Provider#ethereum.on(eventname%2C-callback)). 
+option, since MetaMask now provides callback registration for [accounts changed event](https://metamask.github.io/metamask-docs/API_Reference/Ethereum_Provider#ethereum.on(eventname%2C-callback)).
 
 #### <a name="accounts-changed">`::accounts-changed`
 Fired when accounts have been changed. Use this event to hook into event flow from your modules.
@@ -109,7 +112,7 @@ One example using [re-frame-forward-events-fx](https://github.com/Day8/re-frame-
     (:require [district.ui.web3-accounts.events :as accounts-events]
               [re-frame.core :refer [reg-event-fx]]
               [day8.re-frame.forward-events-fx]))
-              
+
 (reg-event-fx
   ::my-event
   (fn []
@@ -125,8 +128,8 @@ Sets active-account into db
 Fired when active account has changed. Use this event to hook into event flow from your modules.
 
 ## district.ui.web3-accounts.queries
-DB queries provided by this module:  
-*You should use them in your events, instead of trying to get this module's 
+DB queries provided by this module:
+*You should use them in your events, instead of trying to get this module's
 data directly with `get-in` into re-frame db.*
 
 #### <a name="accounts">`accounts [db]`
