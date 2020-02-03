@@ -20,7 +20,7 @@ jobs:
           key: npm-packages-{{ checksum "package-lock.json" }}
           paths:
             - ./node_modules/
-      - run: lein doo chrome-headless "tests" once
+      - run: lein doo chrome "browser-tests" once
 
   deploy:
    machine: true
