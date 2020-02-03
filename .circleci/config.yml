@@ -14,7 +14,7 @@ jobs:
             - npm-packages-{{ checksum "package-lock.json" }}
       - run:
           name: Install node modules
-          command: lein npm install
+          command: npm install
       - save_cache:
           name: Save npm package cache
           key: npm-packages-{{ checksum "package-lock.json" }}

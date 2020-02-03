@@ -18,17 +18,11 @@
 
   :doo {:paths {:karma "./node_modules/karma/bin/karma"}}
 
-  :npm {:devDependencies [[karma "1.7.1"]
-                          [karma-chrome-launcher "2.2.0"]
-                          [karma-cli "1.0.1"]
-                          [karma-cljs-test "0.1.0"]]}
-
   :profiles {:dev {:dependencies [[org.clojure/clojure "1.10.1"]
                                   [day8.re-frame/test "0.1.5"]]
                    :source-paths ["src" "test"]
                    :plugins [[lein-cljsbuild "1.1.7"]
-                             [lein-doo "0.1.8"]
-                             [lein-npm "0.6.2"]]}}
+                             [lein-doo "0.1.8"]]}}
 
   :deploy-repositories [["snapshots" {:url "https://clojars.org/repo"
                                       :username :env/clojars_username
