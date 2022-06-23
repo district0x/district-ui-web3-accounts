@@ -168,9 +168,18 @@ Associates active account and returns new re-frame db.
 * [district-ui-window-focus](https://github.com/district0x/district-ui-window-focus)
 
 ## Development
-```bash
-lein deps
 
-# To run tests and rerun on changes
-lein doo chrome tests
-```
+1. Run test suite:
+- Browser
+  - `npx shadow-cljs watch test-browser`
+  - open https://d0x-vm:6502
+  - tests refresh automatically on code change
+- CI (Headless Chrome, Karma)
+  - `npx shadow-cljs compile test-ci`
+  - ``CHROME_BIN=`which chromium-browser` npx karma start karma.conf.js --single-run``
+
+2. Build
+- on merging pull request to master on GitHub, CI builds & publishes new version automatically
+- update version in `build.clj`
+- to build: `clj -T:build jar`
+- to release: `clj -T:build deploy` (needs `CLOJARS_USERNAME` and `CLOJARS_PASSWORD` env vars to be set)

@@ -1,5 +1,6 @@
 (ns tests.all
   (:require
+    [cljs.spec.alpha :as s]
     [cljs.test :refer [deftest is testing run-tests async use-fixtures]]
     [day8.re-frame.test :refer [run-test-async wait-for run-test-sync]]
     [district.ui.web3-accounts.events :as events]
@@ -7,6 +8,8 @@
     [district.ui.web3-accounts]
     [mount.core :as mount]
     [re-frame.core :refer [reg-event-fx dispatch-sync subscribe reg-cofx reg-fx dispatch]]))
+
+(s/check-asserts true)
 
 (defn set-response [accounts]
   (reg-fx
@@ -61,6 +64,9 @@
           {:web3 {:url "https://mainnet.infura.io/"}
            :web3-accounts {}})
       (mount/start))
+
+    (dispatch-sync [::events/set-accounts ["0x93023b437dc89769e0088ceafb9f7cdbf149814c"]])
+    (dispatch-sync [::events/set-active-account "0x93023b437dc89769e0088ceafb9f7cdbf149814c"])
 
     (is (thrown? :default (dispatch-sync [::events/set-accounts [nil]])))
     (is (thrown? :default (dispatch-sync [::events/set-active-account 1])))))
