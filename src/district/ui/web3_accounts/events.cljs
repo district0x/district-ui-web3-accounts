@@ -1,6 +1,6 @@
 (ns district.ui.web3-accounts.events
-  (:require [cljs-web3.core :as web3]
-            [cljs-web3.eth :as web3-eth]
+  (:require [cljs-web3-next.core :as web3]
+            [cljs-web3-next.eth :as web3-eth]
             [cljs.spec.alpha :as s]
             [day8.re-frame.forward-events-fx]
             [district.ui.web3-accounts.effects :as effects]
