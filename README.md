@@ -6,7 +6,7 @@ Clojurescript [re-mount](https://github.com/district0x/d0x-INFRA/blob/master/re-
 
 ## Installation
 Add
-[![Clojars Project](https://img.shields.io/clojars/v/district0x/district-ui-web3-accounts.svg)](https://clojars.org/district0x/district-ui-web3-accounts)
+[![Clojars Project](https://img.shields.io/clojars/v/io.github.district0x/district-ui-web3-accounts.svg?include_prereleases)](https://clojars.org/io.github.district0x/district-ui-web3-accounts)
 into your project.clj
 Include `[district.ui.web3-accounts]` in your CLJS file, where you use `mount/start`
 
