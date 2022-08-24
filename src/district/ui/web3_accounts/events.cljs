@@ -19,6 +19,12 @@
 (s/def ::account web3/address?)
 (s/def ::accounts (s/coll-of ::account))
 
+(def js->clj-v
+  (re-frame/->interceptor
+    :id      :js->clj-v
+    :before  (fn [context]
+               (update-in context [:coeffects :event] js->clj))))
+
 (defn reg-opts-cofx [opts]
   (re-frame/reg-cofx
    :opts
@@ -78,7 +84,7 @@
 
 (re-frame/reg-event-fx
  ::set-accounts
- [(re-frame/inject-cofx :opts) interceptors (spec-interceptors/validate-first-arg ::accounts)]
+ [(re-frame/inject-cofx :opts) interceptors js->clj-v (spec-interceptors/validate-first-arg ::accounts)]
  (fn [{:keys [:db]
        {:keys [:eip55?]} :opts} [accounts]]
    (let [accounts (if eip55? (map eip55/address->checksum accounts) accounts) ;; support for EIP-55, needed ONLY until UI libraries are migrated to web3 1.0 which supports it OOB
